@@ -3,48 +3,47 @@ package ncu.im3069.demo.app;
 import org.json.*;
 import java.util.Calendar;
 
-// TODO: Auto-generated Javadoc
+//TODO: Auto-generated Javadoc
 /**
- * <p>
- * The Class Member
- * Member類別（class）具有會員所需要之屬性與方法，並且儲存與會員相關之商業判斷邏輯<br>
- * </p>
- * 
- * @author IPLab
- * @version 1.0.0
- * @since 1.0.0
- */
-
+* <p>
+* The Class Member
+* Member類別（class）具有會員所需要之屬性與方法，並且儲存與會員相關之商業判斷邏輯<br>
+* </p>
+* 
+* @author IPLab
+* @version 1.0.0
+* @since 1.0.0
+*/
 public class Member {
     
-    /** id，會員編號 */
+    /** id嚗�蝺刻�� */
     private int id;
     
-    /** email，會員電子郵件信箱 */
+    /** email嚗��摮隞嗡縑蝞� */
     private String email;
     
-    /** name，會員姓名 */
+    /** name嚗�憪�� */
     private String name;
     
-    /** password，會員密碼 */
+    /** password嚗�撖Ⅳ */
     private String password;
     
-    /** login_times，更新時間的分鐘數 */
+    /** login_times嚗������� */
     private int login_times;
     
-    /** status，會員之組別 */
+    /** status嚗�銋� */
     private String status;
     
-    /** mh，MemberHelper之物件與Member相關之資料庫方法（Sigleton） */
+    /** mh嚗emberHelper銋隞嗉�ember������澈�瘜�igleton嚗� */
     private MemberHelper mh =  MemberHelper.getHelper();
     
     /**
-     * 實例化（Instantiates）一個新的（new）Member物件<br>
-     * 採用多載（overload）方法進行，此建構子用於建立會員資料時，產生一名新的會員
+     * 撖虫���nstantiates嚗�����ew嚗ember�隞�<br>
+     * ��憭��verload嚗瘜�脰��迨撱箸���撱箇��鞈�����������
      *
-     * @param email 會員電子信箱
-     * @param password 會員密碼
-     * @param name 會員姓名
+     * @param email ���摮縑蝞�
+     * @param password ��撖Ⅳ
+     * @param name ��憪��
      */
     public Member(String email, String password, String name) {
         this.email = email;
@@ -54,35 +53,35 @@ public class Member {
     }
 
     /**
-     * 實例化（Instantiates）一個新的（new）Member物件<br>
-     * 採用多載（overload）方法進行，此建構子用於更新會員資料時，產生一名會員同時需要去資料庫檢索原有更新時間分鐘數與會員組別
+     * 撖虫���nstantiates嚗�����ew嚗ember�隞�<br>
+     * ��憭��verload嚗瘜�脰��迨撱箸�������鞈�������������閬鞈�澈瑼Ｙ揣������������蝯
      * 
-     * @param id 會員編號
-     * @param email 會員電子信箱
-     * @param password 會員密碼
-     * @param name 會員姓名
+     * @param id ��蝺刻��
+     * @param email ���摮縑蝞�
+     * @param password ��撖Ⅳ
+     * @param name ��憪��
      */
     public Member(int id, String email, String password, String name) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.name = name;
-        /** 取回原有資料庫內該名會員之更新時間分鐘數與組別 */
+        /** �������澈�閰脣��銋��������� */
         getLoginTimesStatus();
-        /** 計算會員之組別 */
+        /** 閮��銋� */
         calcAccName();
     }
     
     /**
-     * 實例化（Instantiates）一個新的（new）Member物件<br>
-     * 採用多載（overload）方法進行，此建構子用於查詢會員資料時，將每一筆資料新增為一個會員物件
+     * 撖虫���nstantiates嚗�����ew嚗ember�隞�<br>
+     * ��憭��verload嚗瘜�脰��迨撱箸����閰Ｘ�鞈������蝑��憓銝����隞�
      *
-     * @param id 會員編號
-     * @param email 會員電子信箱
-     * @param password 會員密碼
-     * @param name 會員姓名
-     * @param login_times 更新時間的分鐘數
-     * @param status the 會員之組別
+     * @param id ��蝺刻��
+     * @param email ���摮縑蝞�
+     * @param password ��撖Ⅳ
+     * @param name ��憪��
+     * @param login_times ��������
+     * @param status the ��銋�
      */
     public Member(int id, String email, String password, String name, int login_times, String status) {
         this.id = id;
@@ -94,78 +93,78 @@ public class Member {
     }
     
     /**
-     * 取得會員之編號
+     * ����銋楊���
      *
-     * @return the id 回傳會員編號
+     * @return the id ����蝺刻��
      */
     public int getID() {
         return this.id;
     }
 
     /**
-     * 取得會員之電子郵件信箱
+     * ����銋摮隞嗡縑蝞�
      *
-     * @return the email 回傳會員電子郵件信箱
+     * @return the email �����摮隞嗡縑蝞�
      */
     public String getEmail() {
         return this.email;
     }
     
     /**
-     * 取得會員之姓名
+     * ����銋���
      *
-     * @return the name 回傳會員姓名
+     * @return the name ����憪��
      */
     public String getName() {
         return this.name;
     }
 
     /**
-     * 取得會員之密碼
+     * ����銋�Ⅳ
      *
-     * @return the password 回傳會員密碼
+     * @return the password ����撖Ⅳ
      */
     public String getPassword() {
         return this.password;
     }
     
     /**
-     * 取得更新資料時間之分鐘數
+     * ����鞈������
      *
-     * @return the login times 回傳更新資料時間之分鐘數
+     * @return the login times ����鞈������
      */
     public int getLoginTimes() {
         return this.login_times;
     }
     
     /**
-     * 取得會員資料之會員組別
+     * ����鞈���蝯
      *
-     * @return the status 回傳會員組別
+     * @return the status ����蝯
      */
     public String getStatus() {
         return this.status;
     }
     
     /**
-     * 更新會員資料
+     * ����鞈��
      *
-     * @return the JSON object 回傳SQL更新之結果與相關封裝之資料
+     * @return the JSON object ��SQL��銋�����������
      */
     public JSONObject update() {
-        /** 新建一個JSONObject用以儲存更新後之資料 */
+        /** �撱箔��SONObject�隞亙摮�敺���� */
         JSONObject data = new JSONObject();
-        /** 取得更新資料時間（即現在之時間）之分鐘數 */
+        /** ����鞈������銋������ */
         Calendar calendar = Calendar.getInstance();
         this.login_times = calendar.get(Calendar.MINUTE);
-        /** 計算帳戶所屬之組別 */
+        /** 閮�董���撅砌�� */
         calcAccName();
         
-        /** 檢查該名會員是否已經在資料庫 */
+        /** 瑼Ｘ閰脣����撌脩�鞈�澈 */
         if(this.id != 0) {
-            /** 若有則將目前更新後之資料更新至資料庫中 */
+            /** ��������敺�����鞈�澈銝� */
             mh.updateLoginTimes(this);
-            /** 透過MemberHelper物件，更新目前之會員資料置資料庫中 */
+            /** ��emberHelper�隞塚�������鞈�蔭鞈�澈銝� */
             data = mh.update(this);
         }
         
@@ -173,12 +172,12 @@ public class Member {
     }
     
     /**
-     * 取得該名會員所有資料
+     * ���府����������
      *
-     * @return the data 取得該名會員之所有資料並封裝於JSONObject物件內
+     * @return the data ���府���銋�����蒂撠�JSONObject�隞嗅
      */
     public JSONObject getData() {
-        /** 透過JSONObject將該名會員所需之資料全部進行封裝*/ 
+        /** ��SONObject撠府�������銋����脰����*/ 
         JSONObject jso = new JSONObject();
         jso.put("id", getID());
         jso.put("name", getName());
@@ -191,27 +190,27 @@ public class Member {
     }
     
     /**
-     * 取得資料庫內之更新資料時間分鐘數與會員組別
+     * �����澈�銋�鞈��������蝯
      *
      */
     private void getLoginTimesStatus() {
-        /** 透過MemberHelper物件，取得儲存於資料庫的更新時間分鐘數與會員組別 */
+        /** ��emberHelper�隞塚���摮鞈�澈�����������蝯 */
         JSONObject data = mh.getLoginTimesStatus(this);
-        /** 將資料庫所儲存該名會員之相關資料指派至Member物件之屬性 */
+        /** 撠��澈���摮府���銋�����晷�Member�隞嗡�惇�� */
         this.login_times = data.getInt("login_times");
         this.status = data.getString("status");
     }
     
     /**
-     * 計算會員之組別<br>
-     * 若為偶數則為「偶數會員」，若為奇數則為「奇數會員」
+     * 閮��銋�<br>
+     * �������������憟��������
      */
     private void calcAccName() {
-        /** 計算目前分鐘數為偶數或奇數 */
-        String curr_status = (this.login_times % 2 == 0) ? "偶數會員" : "奇數會員";
-        /** 將新的會員組別指派至Member之屬性 */
+        /** 閮����������� */
+        String curr_status = (this.login_times % 2 == 0) ? "����" : "憟��";
+        /** 撠���蝯��晷�Member銋惇�� */
         this.status = curr_status;
-        /** 檢查該名會員是否已經在資料庫，若有則透過MemberHelper物件，更新目前之組別狀態 */
+        /** 瑼Ｘ閰脣����撌脩�鞈�澈嚗�����emberHelper�隞塚������������ */
         if(this.id != 0) mh.updateStatus(this, curr_status);
     }
 }
